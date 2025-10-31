@@ -1,5 +1,27 @@
-/metrics.json
-
-data/processed/Consignment_pricing_cleaned.csv
+# Ignore data files
+data/*.csv
 data/processed/
-"data/processed/Consignment_pricing_cleaned.csv" 
+data/raw/
+
+# Ignore MLflow and DVC artifacts
+mlruns/
+.dvc/
+.dvcignore
+
+# Ignore model files
+*.pkl
+*.joblib
+*.h5
+*.pt
+*.onnx
+
+# Ignore Python cache and environment
+__pycache__/
+*.pyc
+.env/
+.venv/
+env/
+venv/
+
+# Ignore VSCode settings
+.vscode/
