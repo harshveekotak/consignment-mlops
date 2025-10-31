@@ -1,0 +1,10 @@
+artifact_location: file:///D:/Jupyter%20Notebook/Sem%203/MLOps/consignment/mlruns/684260755467700309/models/m-abbf04ad4d3f4cc2b7f16fb71c280462/artifacts
+creation_timestamp: 1761234513658
+experiment_id: '684260755467700309'
+last_updated_timestamp: 1761234518467
+model_id: m-abbf04ad4d3f4cc2b7f16fb71c280462
+model_type: null
+name: model
+source_run_id: 48f133df0b00449b88a4a199d677b658
+status: 2
+status_message: null

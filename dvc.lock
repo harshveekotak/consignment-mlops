@@ -1,0 +1,62 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: python src/data_preprocessing.py
+    deps:
+    - path: data/raw/Consignment_pricing_raw.csv
+      hash: md5
+      md5: 75ada24f6df3870fda5fde6a2e24cdad
+      size: 3785904
+    - path: src/data_preprocessing.py
+      hash: md5
+      md5: 7734a6931a73407d3fed4421d4783b96
+      size: 6366
+    outs:
+    - path: data/processed/processed_data.csv
+      hash: md5
+      md5: a0cd1d32fd3a8d85e60468e4271d90c3
+      size: 1475245
+  train_model:
+    cmd: python src/model_training.py
+    deps:
+    - path: data/processed/processed_data.csv
+      hash: md5
+      md5: a0cd1d32fd3a8d85e60468e4271d90c3
+      size: 1475245
+    - path: src/model_training.py
+      hash: md5
+      md5: bfa6fed123654d01db205f798f08f751
+      size: 1164
+    params:
+      params.yaml:
+        train:
+          test_size: 0.2
+          random_state: 42
+          model_type: random_forest
+          n_estimators: 100
+          max_depth: 10
+    outs:
+    - path: models/model.pkl
+      hash: md5
+      md5: ed278ada308290efc9938e4b7b2beab0
+      size: 9379057
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+    - path: data/processed/processed_data.csv
+      hash: md5
+      md5: a0cd1d32fd3a8d85e60468e4271d90c3
+      size: 1475245
+    - path: models/model.pkl
+      hash: md5
+      md5: ed278ada308290efc9938e4b7b2beab0
+      size: 9379057
+    - path: src/evaluate.py
+      hash: md5
+      md5: 16b73264411a06f4a9415495bce6251a
+      size: 785
+    outs:
+    - path: metrics.json
+      hash: md5
+      md5: bb4e61223823a310915e17c8063e02fd
+      size: 60

@@ -1,0 +1,26 @@
+stages:
+  preprocess:
+    cmd: python src/data_preprocessing.py
+    deps:
+    - data/raw/Consignment_pricing_raw.csv
+    - src/data_preprocessing.py
+    outs:
+    - data/processed/processed_data.csv
+  train_model:
+    cmd: python src/model_training.py
+    deps:
+    - data/processed/processed_data.csv
+    - src/model_training.py
+    outs:
+    - models/model.pkl
+    params:
+    - train
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+    - data/processed/processed_data.csv
+    - models/model.pkl
+    - src/evaluate.py
+    metrics:
+    - metrics.json:
+        cache: false
