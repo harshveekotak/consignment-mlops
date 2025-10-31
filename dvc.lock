@@ -53,10 +53,26 @@ stages:
       size: 9379057
     - path: src/evaluate.py
       hash: md5
-      md5: 16b73264411a06f4a9415495bce6251a
-      size: 785
+      md5: 0af18c404c2e0e4472749d9b5e94feee
+      size: 950
     outs:
     - path: metrics.json
       hash: md5
       md5: bb4e61223823a310915e17c8063e02fd
       size: 60
+  retrain_model:
+    cmd: python src/retrain.py
+    deps:
+    - path: data/processed/processed_data.csv
+      hash: md5
+      md5: a0cd1d32fd3a8d85e60468e4271d90c3
+      size: 1475245
+    - path: src/retrain.py
+      hash: md5
+      md5: 4dd52a25888989d243d495936b8fc555
+      size: 2517
+    outs:
+    - path: models/model_retrained.pkl
+      hash: md5
+      md5: 440b0ecc6eb2cae90813323135e9ff30
+      size: 9379233

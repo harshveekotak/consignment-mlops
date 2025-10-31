@@ -24,3 +24,10 @@ stages:
     metrics:
     - metrics.json:
         cache: false
+  retrain_model:
+    cmd: python src/retrain.py
+    deps:
+    - data/processed/processed_data.csv
+    - src/retrain.py
+    outs:
+    - models/model_retrained.pkl
