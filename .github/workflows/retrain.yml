@@ -1,0 +1,34 @@
+name: Model Retraining
+
+on:
+  push:
+    paths:
+      - 'data/**'
+      - 'src/**'
+      - 'models/**'
+      - 'params.yaml'
+
+jobs:
+  retrain:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install dvc[all] mlflow scikit-learn pandas
+
+      - name: Run DVC retraining pipeline
+        run: |
+          dvc repro retrain_model
+
+      - name: Show DVC metrics
+        run: dvc metrics show

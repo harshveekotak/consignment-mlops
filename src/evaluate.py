@@ -27,3 +27,10 @@ with open("metrics.json", "w") as f:
     json.dump(metrics, f)
 
 print(f"R²: {r2:.3f}, RMSE: {rmse:.3f}")
+
+
+import datetime
+
+# Log evaluation history
+with open("logs.txt", "a") as log:
+    log.write(f"{datetime.datetime.now()} - R2: {r2:.3f}, RMSE: {rmse:.3f}\n")
